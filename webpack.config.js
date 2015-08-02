@@ -23,7 +23,8 @@ var webpackConfig = {
                 exclude: /node_modules/,
                 loaders: [
                     require.resolve('react-hot-loader'),
-                    require.resolve('babel-loader')
+                    require.resolve('babel-loader'),
+                    require.resolve('eslint-loader')
                 ]
             },
             { test: /\.json$/, loader: 'json-loader'}
