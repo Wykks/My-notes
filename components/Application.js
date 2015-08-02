@@ -1,10 +1,11 @@
 /*globals document*/
 
 import React from 'react';
-import Nav from './Nav';
+import AddNote from './AddNote';
 import ApplicationStore from '../stores/ApplicationStore';
 import { connectToStores, provideContext } from 'fluxible-addons-react';
 import { handleHistory } from 'fluxible-router';
+import StyleSheet from 'react-style';
 
 @provideContext
 @handleHistory
@@ -17,12 +18,24 @@ import { handleHistory } from 'fluxible-router';
     };
 })
 class Application extends React.Component {
-    render() {
-        var Handler = this.props.currentRoute.get('handler');
+    getStyles() {
+        return StyleSheet.create({
+            app: {
+                fontFamily: 'Roboto, sans-serif',
+                fontSize: '13px',
+                lineHeight: '20px',
+                textAlign: 'center',
+                marginTop: '30px'
+            }
+        });
+    }
 
+    render() {
+        let Handler = this.props.currentRoute.get('handler');
+        const styles = this.getStyles();
         return (
-            <div>
-                <Nav selected={this.props.currentPageName} links={this.props.pages} />
+            <div styles={[styles.app]}>
+                <AddNote />
                 <Handler />
             </div>
         );
